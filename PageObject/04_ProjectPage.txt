@@ -1,0 +1,103 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open Browser, Sing Up / Login, Navigate to Project page
+Post Condition	Close All Browsers
+Tags ProjectPage, TS-1-ProjectPage
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+NewProjectURL =  https://gitlab.com/users/sign_up/groups/new
+TemplateProjectURL = https://gitlab.com/users/sign_up/groups/new#create_from_template
+Group_Name = SoftaProjects
+Project_Name = SoftwareTesting
+Empty = ""
+New_Project_Name = SoftwareTesting2
+Project_URL_Name = NewTemplateProject
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+	Create template project 
+	Update name of template project
+	Delete template project
+	Validate that message is showing Project 'First project ' was successfully created.
+
+
+Create blank project
+
+	Navigate to project page NewProjectURL
+	Input Group Name Group_Name
+	Input Project Name Project_Name
+	Submit 'Create Project'
+	Verify Page Should Contain Message New Project Created
+
+
+
+Create template project
+
+	Navigate to project page TemplateProjectURL
+	Submit 'Use template'
+	Input Project Name Project_Name
+	Input Project URL name Project_URL_Name
+	Submit 'Create Project'
+	Verify Page Should Contain Message New Project Created
+
+
+
+Update name of template project
+ 
+	Navigate to project main page
+	Choose Project Settings
+	Input Project Name New_Project_Name
+	Submit 'Save Changes'
+	Verify Page Should Contain Message Project 'New_Project_Name' was successfully updated
+
+
+Delete template project
+
+	Navigate to project main page
+	Choose Project Settings
+	Expand Advanced settings
+	Submit 'Delete project'
+	Submit Group_Name/Project_Name
+	Submit 'Yes, delete project'
+	Verify Page Should Contain Message Project 'Group_Name/Project_Name-ID_number' will be deleted on 'date when it will be deleted'
+ 
+
+
+	
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+
+Create a blank project with already used name
+
+	Navigate to project page NewProjectURL
+	Input Group Name Group_Name
+	Input Project Name Project_Name
+	Submit 'Create Project'
+	Verify Page Should Contain Error Message 'The Form Contains the Following Errors: project namespace has already been taken, name has 		already been taken, path has already been taken'
+

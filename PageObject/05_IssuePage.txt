@@ -1,0 +1,80 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Tips: Open browser, Navigate to Login, Login, Navigate to project page, Create project
+Post Condition	Close all browsers 
+Tags Issues, TS-1-Issues
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+IssuePageURL = https://gitlab.com/softaprojects/myproject/-/issues/new
+Issue_Title = Issue1
+Description = something
+Empty = ""
+New_Issue_Title = NewIssue1
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue,
+ 	Update name of issue, 
+	Create second issue with privious updated name
+    	Delete first issue
+
+Creating issue
+
+	Navigate To Issue Page  IssuePageURL
+	Input Issue Title Issue_Title
+	Input Description Description
+	Submit Create issue
+	Verify Page Should Contain 'Issue created just now by *username*'
+
+
+
+Updating issue name
+	
+	
+	Navigate Issues main page
+	Choose which Issue to edit
+	Click 'Edit'
+	Input New_Issue_Title to Issue title
+	Submit 'Save changes'
+
+
+
+Creating issue with previously updated name
+
+	Navigate To Issue Page  IssuePageURL
+	Input Issue Title Issue_Title
+	Input Description Description
+	Submit Create issue
+	Verify Page Should Contain 'Issue created just now by *username*'
+
+
+
+Deleting first issue
+
+	Navigate Issues main page
+	Choose which Issue to edit (Issues marked with hashtags and numbers)
+	Click three dots on right side of 'Edit'
+	Submit 'Delete issue'
+	Submit 'Delete issue' on pop-up window
+	Verify page should contain 'The issue was successfully deleted'
+
